@@ -9,3 +9,7 @@ https://1drv.ms/x/c/ab623637ed28c1bc/IQDKRG6u2sIYTbmO5HWx8aN7AcQEOkC3fEyna3Dq8Oj
 ## Test case - Exercises
 
 https://1drv.ms/x/c/ab623637ed28c1bc/IQA2GZAuf709QJ0DZPbZpmSCAc2zUClU2kPag__AKXKEuP8?e=vqL66w
+
+## 24/09 - TASK
+
+https://1drv.ms/x/c/ab623637ed28c1bc/IQCzC6Z4nHQTSbvODFY1JjAvAWwIwPXfKdnBn74Uxd6ZI9g?e=jagTZf
