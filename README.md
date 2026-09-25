@@ -13,3 +13,8 @@ https://1drv.ms/x/c/ab623637ed28c1bc/IQA2GZAuf709QJ0DZPbZpmSCAc2zUClU2kPag__AKXK
 ## 24/09 - TASK
 
 https://1drv.ms/x/c/ab623637ed28c1bc/IQCzC6Z4nHQTSbvODFY1JjAvAWwIwPXfKdnBn74Uxd6ZI9g?e=jagTZf
+
+
+## 25.09 - Task
+
+https://colab.research.google.com/drive/1tD0uqMfyjD8dmgKNn0MOQ1cRqv0gGeii?usp=sharing
