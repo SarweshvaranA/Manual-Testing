@@ -70,3 +70,145 @@ time.sleep(20)
 
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3fda58d7-9c7c-4eff-bd2f-2875086a2ffe" />
+
+
+
+### 6/10 - TASK 2
+
+```python
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+
+driver = webdriver.Edge()
+driver.maximize_window()
+
+wait = WebDriverWait(driver, 20)
+driver.get("https://www.amazon.in/")
+
+
+login = wait.until(
+    EC.element_to_be_clickable(
+        (By.CLASS_NAME, "nav-line-1-container")
+    )
+)
+login.click()
+
+
+phone = wait.until(
+    EC.visibility_of_element_located(
+        (By.NAME, "email")
+    )
+)
+phone.send_keys("7397225410")
+
+
+cont = wait.until(
+    EC.element_to_be_clickable(
+        (By.CLASS_NAME, "a-button-input")
+    )
+)
+cont.click()
+
+otp = wait.until(
+    EC.visibility_of_element_located(
+        (By.NAME, "code")
+    )
+)
+
+otp.send_keys(input("Enter OTP: "))
+
+
+otp_button = wait.until(
+    EC.element_to_be_clickable(
+        (By.CLASS_NAME, "a-button-input")
+    )
+)
+otp_button.click()
+
+print("Login successful")
+
+
+search = wait.until(
+    EC.visibility_of_element_located(
+        (By.ID, "twotabsearchtextbox")
+    )
+)
+
+search.send_keys("Mens shoes")
+
+
+search_button = wait.until(
+    EC.element_to_be_clickable(
+        (By.ID, "nav-search-submit-button")
+    )
+)
+search_button.click()
+
+print("Product searched")
+
+time.sleep(4)
+
+
+buttons = driver.find_elements(
+    By.XPATH,
+    '//button[@aria-label="Add to cart"]'
+)
+
+print("Add to cart buttons found:", len(buttons))
+
+
+for button in buttons:
+    if button.is_displayed() and button.is_enabled():
+        driver.execute_script(
+            "arguments[0].scrollIntoView({block: 'center'});",
+            button
+        )
+        time.sleep(1)
+        button.click()
+        print("Product added to cart")
+        break
+
+else:
+    print("No enabled Add to cart button found.")
+
+
+time.sleep(3)
+
+driver.get("https://www.amazon.in/gp/cart/view.html")
+print("Cart opened")
+time.sleep(4)
+
+
+checkout = wait.until(
+    EC.element_to_be_clickable(
+        (By.NAME, "proceedToRetailCheckout")
+    )
+)
+
+checkout.click()
+print("Checkout opened")
+time.sleep(5)
+
+try:
+
+    payment = wait.until(
+        EC.element_to_be_clickable(
+            (By.NAME, "ppw-instrumentRowSelection")
+        )
+    )
+
+    payment.click()
+    print("Payment method selected")
+
+except:
+    print("Payment method was not found")
+
+
+input("Press Enter to close browser...")
+driver.quit()
+```
+
+<img width="1456" height="1078" alt="image" src="https://github.com/user-attachments/assets/118a975a-1dc3-4087-88f8-15150b5ffb77" />
