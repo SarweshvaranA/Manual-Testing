@@ -509,7 +509,107 @@ time.sleep(2)
 driver.quit()
 
 print("\nAll test cases completed successfully")
-```    
-
+```
 
 <img width="1600" height="855" alt="image" src="https://github.com/user-attachments/assets/9533b009-3c5e-46eb-b470-a53edc913397" />
+
+
+
+### 9/10 - TASK
+
+```
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+driver = webdriver.Edge()
+wait = WebDriverWait(driver, 10)
+driver.get("https://assertqa.com/practice/webtables")
+driver.maximize_window()
+table = wait.until(
+EC.visibility_of_element_located((By.TAG_NAME, "table"))
+)
+headers = table.find_elements(By.XPATH, ".//thead/tr/th")
+rows = table.find_elements(By.XPATH, ".//tbody/tr")
+
+print("TC01: Column Headings")
+for header in headers:
+print(header.text)’’
+time.sleep(10)
+
+print("TC02: First Data Row")
+if rows:
+print(rows[0].text)
+else:
+print("No data rows found")
+time.sleep(10)
+
+print("TC03: Last Data Row")
+if rows:
+print(rows[-1].text)
+else:
+print("No data rows found")
+
+print("TC04: Search by Last Name")
+last_name = input("Enter employee last name: ")
+found = False
+for row in rows:
+if last_name.lower() in row.text.lower():
+print("Matching record:", row.text)
+found = True
+if not found:
+print("No matching employee found")
+
+print("TC05: All Email Addresses")
+for row in rows:
+cells = row.find_elements(By.TAG_NAME, "td")
+for cell in cells:
+if "@" in cell.text:
+print(cell.text)
+
+print("TC06: Highest Due Amount")
+highest_due = None
+highest_due_row = None
+for row in rows:
+cells = row.find_elements(By.TAG_NAME, "td")
+for index, header in enumerate(headers):
+if header.text.strip().lower() == "due":
+due_index = index
+break
+else:
+due_index = None
+if due_index is not None and due_index < len(cells):
+due_text = cells[due_index].text.strip()
+due_value = float(
+due_text.replace("$", "").replace(",", "")
+)
+if highest_due is None or due_value > highest_due:
+highest_due = due_value
+highest_due_row = row.text
+if highest_due_row is not None:
+print("Employee record:", highest_due_row)
+print("Highest Due amount:", highest_due)
+else:
+print("Due column or valid Due values not found")
+
+print("TC07: Verify Website Link")
+website = input("Enter website URL or text to search: ")
+links = driver.find_elements(By.XPATH, "//a")
+link_found = False
+for link in links:
+href = link.get_attribute("href") or ""
+text = link.text.strip()
+if website.lower() in href.lower() or website.lower() in text.lower():
+link_found = True
+print("PASS: Website link exists")
+print("Link:", href)
+break
+if not link_found:
+print("FAIL: Website link does not exist")
+
+print("\nTC08: Count Data Rows")
+print("Total data rows:", len(rows))
+```
+
+
+
